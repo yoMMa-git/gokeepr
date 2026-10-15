@@ -7,3 +7,7 @@ type StorageEngine interface {
 	Scan(from, to string) Iterator
 	Close() error
 }
+
+func Open(dir string) (StorageEngine, error) {
+	return nil, ErrNotImplemented
+}

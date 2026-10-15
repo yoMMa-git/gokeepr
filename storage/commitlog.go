@@ -3,12 +3,12 @@ package storage
 type LogRecord struct {
 	key       string
 	value     []byte
-	Tombstone bool
+	Tombstone bool // true будет означать, что ключ удалён
 }
 
 type CommitLog interface {
 	Append(record LogRecord) error
-	Replay() ([]LogRecord, error) // TODO: Replay(apply func(LogRecord) error) error
+	Replay(apply func(LogRecord) error) error
 	Truncate() error
 	Close() error
 }
